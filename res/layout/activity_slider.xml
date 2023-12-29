@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- ViewPager for Slides -->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/view_pager_description" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabDots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:tabBackground="@drawable/tab_dot"
+        app:tabIndicatorColor="#105437"
+        app:tabRippleColor="#7AD8B0"
+
+        />
+    <!--        app:tabBackground="@drawable/tab_dot"-->
+    <!--        app:tabGravity="center"-->
+    <!--        app:tabIndicatorHeight="0dp"-->
+    <!--        app:tabIndicator="@null"/>-->
+
+
+</RelativeLayout>
