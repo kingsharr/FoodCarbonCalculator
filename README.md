@@ -2,7 +2,7 @@
 
 - Sharran's branch
 - I have added User Registration, User Login and User Review and Rating.
-- I have also added 9 drawable files which will be used by the above Activities.
+- I have also added 11 drawable files which will be used by the above Activities.
 - There is also 2 values files here which is colors.xml and strings.xml
 - Lastly, I will add the dependencies that I used for my project here. Feel free to add them to your project as well:
 - dependencies {
