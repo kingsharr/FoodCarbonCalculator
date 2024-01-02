@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Food Carbon Calculator</string>
+    <string name="default_web_client_id">YOUR_WEB_CLIENT_ID</string>
+
+    //facebook
+    <string name="facebook_app_id">1234</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">56789</string>
+
+
+</resources>
