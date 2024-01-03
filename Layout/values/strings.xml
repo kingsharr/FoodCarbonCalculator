@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">FoodCarbonCalculator</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="choosegender">-Choose Gender-</string>
+    <string name="choosediet">-Choose Diet</string>
+    <string-array name="gender">
+        <item>Female</item>
+        <item>Male</item>
+    </string-array>
+    <string-array name="diet">
+        <item>Vegan</item>
+        <item>Meat-Eater</item>
+        <item>Pescatarian</item>
+        <item>Vegetarian</item>
+
+    </string-array>
+    <string-array name="food">
+        <item> - Select Food - </item>
+        <item> Nasi Lemak </item>
+        <item> Nasi Goreng </item>
+        <item> Mee Goreng </item>
+        <item> Mee Kolok </item>
+        <item> Keuw Tiaw Goreng </item>
+    </string-array>
+
+    <string-array name="drink">
+        <item> - Select Drink - </item>
+        <item> Limau Ais </item>
+        <item> Sirap Bandung </item>
+        <item> Teh Tarik </item>
+        <item> Milo Ais </item>
+    </string-array>
+
+    <string name="default_web_client_id">YOUR_WEB_CLIENT_ID</string>
+
+    //facebook
+    <string name="facebook_app_id">1234</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">56789</string>
+
+</resources>

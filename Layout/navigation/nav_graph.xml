@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/DestHome">
+
+    <activity
+        android:id="@+id/DestProfile"
+        android:name="com.example.foodcarboncalculator.ProfileActivity"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
+    <activity
+        android:id="@+id/DestHome"
+        android:name="com.example.foodcarboncalculator.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/editProfile"
+        android:name="com.example.foodcarboncalculator.EditProfile"
+        android:label="activity_edit_profile"
+        tools:layout="@layout/activity_edit_profile" />
+    <activity
+        android:id="@+id/DestCalender"
+        android:name="com.example.foodcarboncalculator.MealPlannerActivity"
+        android:label="activity_meal_planner"
+        tools:layout="@layout/activity_meal_planner" />
+</navigation>
