@@ -37,48 +37,48 @@ protected void onCreate(Bundle savedInstanceState) {
 
 activity.xml:
 *the BNV and FAB have to be under coordinatorlayout*
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-<ImageView
-    android:id="@+id/imageView3"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="60dp"
-    android:src="@drawable/background" />
-
-<com.google.android.material.bottomnavigation.BottomNavigationView
-    android:id="@+id/bottomNavigationView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
-    app:itemIconTint="@drawable/item_selector"
-    app:itemRippleColor="@android:color/transparent"
-    android:background="@drawable/transparent_background"
-    android:backgroundTint="@color/colorPrimary"
-    app:labelVisibilityMode="unlabeled"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:menu="@menu/menu_bottom">
-
-</com.google.android.material.bottomnavigation.BottomNavigationView>
-
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/floatingActionButton"
-    android:layout_width="60dp"
-    android:layout_height="60dp"
-    android:backgroundTint="@color/colorPrimaryDark"
-    android:contentDescription="calculator"
-    android:scaleType="center"
-    android:src="@drawable/calculator"
-    app:fabCustomSize="60dp"
-    app:layout_anchor="@+id/bottomNavigationView"
-    app:layout_anchorGravity="center"
-    app:maxImageSize="24dp"
-    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"
-    app:tint="@color/white" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
-</androidx.drawerlayout.widget.DrawerLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/background" />
+    
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@android:color/transparent"
+        android:background="@drawable/transparent_background"
+        android:backgroundTint="@color/colorPrimary"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom">
+    
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:contentDescription="calculator"
+        android:scaleType="center"
+        android:src="@drawable/calculator"
+        app:fabCustomSize="60dp"
+        app:layout_anchor="@+id/bottomNavigationView"
+        app:layout_anchorGravity="center"
+        app:maxImageSize="24dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"
+        app:tint="@color/white" />
+    
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
