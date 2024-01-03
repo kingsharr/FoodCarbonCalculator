@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/RL1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border">
+
+        <ImageView
+            android:id="@+id/imgView_profile"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/profile" />
+
+        <TextView
+            android:id="@+id/TxtUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/imgView_profile"
+            android:text="Username"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/TxtTopic"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgView_profile"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Topic here"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/TxtDesc"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgView_profile"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="5dp"
+            android:text="Description here"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/imgView_ForumPic"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@+id/TxtDesc"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:padding="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_food" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
