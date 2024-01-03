@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MADTest1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_app">My Slider</string>
+    <string name="view_pager_description">Content for the view pager slides</string>
+    <!--    <string-array name="categories">-->
+    <!--        <item>Food Quality</item>-->
+    <!--        <item>Service</item>-->
+    <!--        <item>Cleanliness</item>-->
+    <!--        <item>Ambiance</item>-->
+    <!--    </string-array>-->
+</resources>

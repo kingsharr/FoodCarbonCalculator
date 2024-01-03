@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="iconClickBg">#FF000000</color>
+    <color name="iconClick">#FFFFFFFF</color>
+    <color name="colorPrimary">#4CAF50</color> <!-- example green color -->
+    <color name="colorPrimaryDark">#CBDDCC</color> <!-- darker green for selected item -->
+    <color name="colorAccent">#C8E6C9</color>
+
+    <color name="colorBg">#FCFCFC</color>
+    <color name="colorIcon">#22C7A9</color>
+    <color name="colorText">#118E77</color>
+
+
+    <!-- lighter green for unselected items -->
+</resources>
