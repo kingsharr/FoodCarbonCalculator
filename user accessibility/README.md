@@ -1,1 +1,1 @@
-i added some code setupactivity.java
+- i added some code on setupactivity.java
