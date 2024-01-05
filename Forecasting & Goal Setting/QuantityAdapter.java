@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +18,16 @@ public class QuantityAdapter extends RecyclerView.Adapter<QuantityAdapter.ViewHo
     View view;
     Context context;
     ArrayList<String> arrayList;
+    private OnItemClickListener listener;
+
+    //need interface for delete goal
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnClickListener(OnItemClickListener clickListener){
+        listener = clickListener;
+    }
 
     public QuantityAdapter(Context context, ArrayList<String> arrayList) {
         this.context = context;
@@ -32,7 +43,9 @@ public class QuantityAdapter extends RecyclerView.Adapter<QuantityAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         view = LayoutInflater.from(context).inflate(R.layout.goal_item,parent,false);
-        return new ViewHolder(view);
+
+        //pass goal to delete
+        return new ViewHolder(view,listener);
     }
 
     @Override
@@ -49,9 +62,18 @@ public class QuantityAdapter extends RecyclerView.Adapter<QuantityAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         CheckBox check_box;
-        public ViewHolder(@NonNull View itemView) {
+        ImageView delete;
+        public ViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             check_box = itemView.findViewById(R.id.checkBoxGoal);
+            delete = itemView.findViewById(R.id.imgTrash);
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(getAdapterPosition());
+                }
+            });
         }
     }
 
