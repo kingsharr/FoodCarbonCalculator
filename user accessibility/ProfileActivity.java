@@ -2,7 +2,9 @@ package com.example.foodcarboncalculator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,16 +29,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private BottomNavigationView bottomNavigationView;
+
     TextView profileEmail, profileUsername, profileAge, profileDiet, profileCarbon, profileGender;
-    Button editProfile;
+    Button editProfile, logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+
         profileEmail = findViewById(R.id.profileEmail);
         profileUsername = findViewById(R.id.profileUserName);
         profileGender = findViewById(R.id.profileGender);
@@ -49,80 +64,114 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //bottom navigation view
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.DestHome);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.DestHome) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                return true;
+            } else if (item.getItemId() == R.id.DestCalender) {
+                startActivity(new Intent(getApplicationContext(), MealPlannerActivity.class));
+                return true;
+            } else if (item.getItemId() == R.id.DestCommunity) {
+                // Handle DestCommunity
+                return true;
+            } else if (item.getItemId() == R.id.DestProfile) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                return true;
+            }
+            return false;
+        });
+
+        //logout
+        logoutButton = findViewById(R.id.BTNLogout);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void showAllUserData() {
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("users").document(userId);
 
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String emailUser = snapshot.child("email").getValue(String.class);
-                    String usernameUser = snapshot.child("name").getValue(String.class);
-                    String gender = snapshot.child("gender").getValue(String.class);
-                    Long age = snapshot.child("age").getValue(Long.class);
-                    String diet = snapshot.child("dietaryPreference").getValue(String.class);
-                    Double carbon = snapshot.child("carbon").getValue(Double.class);
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        String emailUser = document.getString("email");
+                        String usernameUser = document.getString("name");
+                        String gender = document.getString("gender");
+                        Long age = document.getLong("age");
+                        String diet = document.getString("dietaryPreference");
+                        Double carbon = document.getDouble("carbon");
 
-                    // Set retrieved data to respective TextViews
-                    profileEmail.setText(emailUser);
-                    profileUsername.setText(usernameUser);
-                    profileAge.setText(String.valueOf(age));
-                    profileGender.setText(gender);
-                    profileDiet.setText(diet);
-                    profileCarbon.setText(String.valueOf(carbon));
+                        // Set retrieved data to respective TextViews
+                        profileEmail.setText(emailUser);
+                        profileUsername.setText(usernameUser);
+                        profileAge.setText(String.valueOf(age));
+                        profileGender.setText(gender);
+                        profileDiet.setText(diet);
+                        profileCarbon.setText(String.valueOf(carbon));
+                    } else {
+                        // Handle when user data doesn't exist
+                        Toast.makeText(ProfileActivity.this, "No data available for this user", Toast.LENGTH_SHORT).show();
+                        // You can set default values or display a message in TextViews
+                        profileEmail.setText("No email available");
+                        profileUsername.setText("No username available");
+                    }
                 } else {
-
-                    // Handle when user data doesn't exist
-                    Toast.makeText(ProfileActivity.this, "No data available for this user", Toast.LENGTH_SHORT).show();
-                    // You can set default values or display a message in TextViews
-                    profileEmail.setText("No email available");
-                    profileUsername.setText("No username available");
+                    // Handle exceptions while fetching data
+                    Toast.makeText(ProfileActivity.this, "Error fetching user data", Toast.LENGTH_SHORT).show();
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle onCancelled
             }
         });
     }
 
 
 
-    public void passUserData(){
-        String userUsername = profileUsername.getText().toString().trim();
+    public void passUserData() {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("users").document(userId);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-        Query checkUserDatabase = reference.orderByChild("name").equalTo(userUsername);
-
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    // Retrieve necessary data from documentSnapshot
+                    String email = documentSnapshot.getString("email");
+                    String name = documentSnapshot.getString("name");
+                    String gender = documentSnapshot.getString("gender");
+                    Long age = documentSnapshot.getLong("age");
+                    String diet = documentSnapshot.getString("dietaryPreference");
+                    Double carbon = documentSnapshot.getDouble("carbon");
 
-                if (snapshot.exists()){
-
-                    String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
-                    String usernameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
-
+                    // Pass the data to EditProfile activity
                     Intent intent = new Intent(ProfileActivity.this, EditProfile.class);
-
-                    intent.putExtra("email", emailFromDB);
-                    intent.putExtra("name", usernameFromDB);
+                    intent.putExtra("email", email);
+                    intent.putExtra("name", name);
+                    intent.putExtra("gender", gender);
+                    intent.putExtra("age", age);
+                    intent.putExtra("dietaryPreference", diet);
+                    intent.putExtra("carbon", carbon);
 
                     startActivity(intent);
-
                 }
             }
-
-
-
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onFailure(@NonNull Exception e) {
+                // Handle failure to fetch user data
+                Toast.makeText(ProfileActivity.this, "Failed to fetch user data", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }
