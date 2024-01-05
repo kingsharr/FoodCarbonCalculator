@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">Food Carbon Calculator</string>
+    <string name="default_web_client_id">YOUR_WEB_CLIENT_ID</string>
+
+    //facebook
+    <string name="facebook_app_id">870330094545665</string>
+    <string name="fb_login_protocol_scheme">fb870330094545665</string>
+    <string name="facebook_client_token">56789</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="food">
+        <item> - Select Food - </item>
+        <item> Nasi Lemak </item>
+        <item> Nasi Briyani </item>
+        <item> Nasi Kerabu </item>
+        <item> Chicken Rice </item>
+        <item> Banana Leaf Rice </item>
+        <item> Ikan Bakar </item>
+        <item> Nasi Goreng </item>
+        <item> Mee Goreng </item>
+        <item> Char Kway Teow </item>
+        <item> Maggi </item>
+        <item> Roti Canai </item>
+        <item> Roti Jala </item>
+        <item> Tose </item>
+        <item> Chapati </item>
+        <item> Kaya Toast </item>
+        <item> Curry Laksa </item>
+        <item> Yong Tau Foo </item>
+        <item> Chicken Chop </item>
+        <item> Pizza </item>
+        <item> Ramly Burger </item>
+        <item> Murtabak </item>
+        <item> Satay </item>
+        <item> Apam Balik </item>
+        <item> Rojak </item>
+        <item> Pisang Goreng </item>
+    </string-array>
+
+    <string-array name="carbon_values">
+        <item> Nasi Lemak, 500.0</item>
+        <item> Nasi Briyani, 600.0</item>
+        <item> Nasi Kerabu, 400.0</item>
+        <item> Chicken Rice, 700.0</item>
+        <item> Banana Leaf Rice, 600.0</item>
+        <item> Nasi Goreng, 400.0</item>
+        <item> Mee goreng, 400.0</item>
+        <item> Char Kway Teow, 500.0</item>
+        <item> Maggi, 100.0</item>
+        <item> Roti Canai, 300.0</item>
+        <item> Roti Jala, 300.0</item>
+        <item> Tose, 100.0</item>
+        <item> Chapati, 150.0</item>
+        <item> Kaya Toast, 150.0</item>
+        <item> Curry Laksa, 500.0</item>
+        <item> Yong Tau Foo, 200.0</item>
+        <item> Chicken Chop, 700.0</item>
+        <item> Pizza, 800.0</item>
+        <item> Ramly Burger, 400.0</item>
+        <item> Murtabak, 400.0</item>
+        <item> Satay, 300.0</item>
+        <item> Apam Balik, 200.0</item>
+        <item> Rojak, 300.0</item>
+        <item> Pisang Goreng, 200.0</item>
+        <item> Ikan Bakar, 600.0</item>
+    </string-array>
+
+    <string-array name="how_many_times">
+        <item> - Select How Often - </item>
+        <item> less quantity </item>
+        <item> medium quantity </item>
+        <item> more quantity </item>
+    </string-array>
+
+
+</resources>
