@@ -9,20 +9,32 @@
     app:cardElevation="8dp"
     app:cardMaxElevation="5dp"
     android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/lightGreen"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/checkBoxGoal"
-            android:layout_width="match_parent"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="Goal"
             tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/imgTrash"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/trash"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+            android:visibility="visible"/>
+
 
     </LinearLayout>
 

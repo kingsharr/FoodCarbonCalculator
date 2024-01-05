@@ -40,21 +40,22 @@
     <ImageView
         android:id="@+id/imgBeige"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="700dp"
         android:layout_marginBottom="-100dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575" />
+        app:layout_constraintTop_toBottomOf="@+id/txt1"
+        app:layout_constraintVertical_bias="0" />
 
     <TextView
         android:id="@+id/txtForecast"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:background="@color/white"
+        android:background="@drawable/border"
         android:text="Keep going and you will reduce \n2% more carbon next year!"
         android:padding="12dp"
         android:textColor="@color/black"
@@ -86,14 +87,16 @@
         android:background="@drawable/border"
         android:clickable="true"
         android:gravity="center"
-        android:paddingStart="-60dp"
         android:text="Add a new goal!"
-        android:textColor="@color/green"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/black"
+        android:paddingLeft="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalRecyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/scroll"
         app:layout_constraintVertical_bias="0.9" />
 
     <ImageView
@@ -104,11 +107,11 @@
         android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnSetGoal"
         app:layout_constraintEnd_toEndOf="@+id/btnSetGoal"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="@+id/btnSetGoal"
         app:layout_constraintTop_toTopOf="@+id/btnSetGoal"
         app:layout_constraintVertical_bias="0.1"
-        app:srcCompat="@drawable/create" />
+        app:srcCompat="@drawable/create_black" />
 
     <ImageView
         android:id="@+id/imgForecast"
@@ -123,15 +126,30 @@
         app:layout_constraintStart_toStartOf="@+id/txtForecast"
         app:layout_constraintTop_toTopOf="@+id/txtForecast"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/goalRecyclerView"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imgBeige"
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:fadeScrollbars="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGoal"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintTop_toBottomOf="@+id/txtForecast"
+        app:layout_constraintVertical_bias="0.409">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/goalRecyclerView"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgBeige"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtGoal"
+            app:layout_constraintVertical_bias="0.05" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
