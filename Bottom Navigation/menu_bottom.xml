@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/home_icon"
+        android:title="Home Page"
+        />
+
+    <item
+        android:id="@+id/bottom_calendar"
+        android:icon="@drawable/calendar_icon"
+        android:title="Calendar"
+        />
+
+    <item
+        android:id="@+id/bottom_calculator"
+        android:icon="@drawable/calculator_icon"
+        android:title="Calculator"
+        />
+
+    <item
+        android:id="@+id/bottom_comment"
+        android:icon="@drawable/comment_icon"
+        android:title="Comment"
+        />
+
+    <item
+        android:id="@+id/bottom_profile"
+        android:icon="@drawable/profile_icon"
+        android:title="Profile Page"
+        />
+
+</menu>
