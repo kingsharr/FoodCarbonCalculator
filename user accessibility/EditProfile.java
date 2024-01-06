@@ -1,13 +1,16 @@
 package com.example.foodcarboncalculator;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -16,16 +19,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfile extends AppCompatActivity {
 
     EditText editName, editEmail, editAge, editCarbon;
     Spinner spinnerGender, spinnerDiet;
-    Button saveButton, logoutButton;
+    Button saveButton, logoutButton, cancelButton;
+    CircleImageView imageView;
     Long ageUser;
     Double  carbonUser;
     String nameUser, emailUser, usernameUser, dietUser, genderUser;
     DocumentReference reference;
+    FirebaseAuth auth;
+    FirebaseDatabase database;
+    FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +46,11 @@ public class EditProfile extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         reference = db.collection("users").document(userId);
 
+        database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
+        auth = FirebaseAuth.getInstance();
+
+        imageView = findViewById(R.id.imageView2);
 
         editName = findViewById(R.id.editName);
         editEmail = findViewById(R.id.editEmail);
@@ -44,8 +59,10 @@ public class EditProfile extends AppCompatActivity {
         spinnerDiet = findViewById(R.id.spinner_diet);
         editCarbon = findViewById(R.id.editCarbon);
         saveButton = findViewById(R.id.saveButton);
+        cancelButton = findViewById(R.id.BtnCancel);
 
         showData();
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +77,57 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (changesMade()) {
+                    showDiscardChangesDialog();
+                } else {
+                    // If no changes made, go back to activity_profile
+                    Intent intent = new Intent(EditProfile.this, ProfileActivity.class);
+                    startActivity(intent);
+                    finish(); // Optional: Close the current activity
+                }
+            }
+
+            private boolean changesMade() {
+                if(!nameUser.equals(editName.getText().toString())||
+                        !emailUser.equals(editEmail.getText().toString())||
+                        !genderUser.equals(spinnerGender.getSelectedItem().toString())||
+                        ageUser!=Long.parseLong(editAge.getText().toString())||
+                        !dietUser.equals(spinnerDiet.getSelectedItem().toString())||
+                        carbonUser!=Double.parseDouble(editCarbon.getText().toString())
+                ){ return true;
+                }else return false;
+            }
+        });
+
     }
+
+    private void showDiscardChangesDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Discard changes?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // If the user clicks "Yes", go back to activity_profile
+                Intent intent = new Intent(EditProfile.this, ProfileActivity.class);
+                startActivity(intent);
+                finish(); // Optional: Close the current activity
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // If the user clicks "No", stay in the EditProfileActivity
+                dialogInterface.dismiss(); // Dismiss the dialog
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
 
     private boolean isNameChanged() {
         if (!nameUser.equals(editName.getText().toString())) {
