@@ -10,5 +10,6 @@
     <color name="red">#FFE30A0A</color>
     <color name="greenBlue">#22C7A9</color>
     <color name="textHintColor">#4E4C4C</color>
+    <color name="lightGreen">#71E3CF</color>
     <color name="backgroundColor">#EFECD5</color>
 </resources>
