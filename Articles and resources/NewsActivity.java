@@ -42,7 +42,7 @@ public class NewsActivity extends AppCompatActivity implements NewsAdapter.OnIte
     }
 
     void getNews() {
-        NewsApiClient newsApiClient = new NewsApiClient("e050b3cc47c34ccba58edc1aef3178cb");
+        NewsApiClient newsApiClient = new NewsApiClient("YOUR API KEY");
         newsApiClient.getTopHeadlines(
                 new TopHeadlinesRequest.Builder()
                         .q("health")
