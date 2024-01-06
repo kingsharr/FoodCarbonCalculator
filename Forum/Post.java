@@ -1,5 +1,33 @@
 package com.example.foodcarboncalculator;
 
+import java.util.ArrayList;
+
+class Comment{
+    private String commentText;
+    private String userId;
+
+    public Comment(String commentText, String userId) {
+        this.commentText = commentText;
+        this.userId = userId;
+    }
+
+    public String getCommentText() {
+        return commentText;
+    }
+
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+}
+
 public class Post {
 
     private String postKey;
@@ -8,17 +36,38 @@ public class Post {
     private String picture;
     private String userID;
     private String userPhoto;
+    private ArrayList<Comment> commentList;
+    private String postId;
 
-    public Post(String title, String description, String picture, String userID, String userPhoto){
+
+    public Post(String postId, String title, String description, String picture, String userID, String userPhoto){
+        this.postId = postId;
         this.title = title;
         this.description = description;
         this.picture = picture;
         this.userID = userID;
         this.userPhoto = userPhoto;
+        this.commentList = new ArrayList<Comment>();
     }
 
     public Post(){
 
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
+    public ArrayList<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(Comment comment) {
+        this.commentList.add(comment);
     }
 
     public String getPostKey() {
@@ -68,4 +117,5 @@ public class Post {
     public void setUserPhoto(String userPhoto) {
         this.userPhoto = userPhoto;
     }
+
 }
