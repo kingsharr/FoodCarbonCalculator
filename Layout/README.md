@@ -16,14 +16,15 @@ protected void onCreate(Bundle savedInstanceState) {
     bottomNavigationView.setSelectedItemId(R.id.DestHome);//if at calendar activity, change to DestCalendar, at Profile, change to DestProfile etc..
     bottomNavigationView.setOnItemSelectedListener(item -> {
         if (item.getItemId() == R.id.DestHome) {
-            // Handle DestHome
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
             return true;
         } else if (item.getItemId() == R.id.DestCalender) {
             startActivity(new Intent(getApplicationContext(), MealPlannerActivity.class));
             finish();
             return true;
         } else if (item.getItemId() == R.id.DestCommunity) {
-            // Handle DestCommunity
+            // add intent
             return true;
         } else if (item.getItemId() == R.id.DestProfile) {
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
