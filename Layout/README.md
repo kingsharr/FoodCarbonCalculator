@@ -1,9 +1,9 @@
-i updated the bottom navigation view in activity_main.xml and MainActivity java
+- i updated the bottom navigation view in activity_main.xml and MainActivity java
 
-for every activity that contains bottom navigation view, please add this code
+- for every activity that contains bottom navigation view, please add this code
 
 .java: 
-
+```java
 public class [ActivityName] extends AppCompatActivity {
 
 @Override
@@ -13,7 +13,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Bottom Navigation View
     BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-    bottomNavigationView.setSelectedItemId(R.id.DestHome);
+    bottomNavigationView.setSelectedItemId(R.id.DestHome);//if at calendar activity, change to DestCalendar, at Profile, change to DestProfile etc..
     bottomNavigationView.setOnItemSelectedListener(item -> {
         if (item.getItemId() == R.id.DestHome) {
             // Handle DestHome
@@ -34,8 +34,10 @@ protected void onCreate(Bundle savedInstanceState) {
     });
 
 }
+```
 
 activity.xml:
+```xml
 *the BNV and FAB have to be under coordinatorlayout*
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -82,3 +84,4 @@ activity.xml:
     
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.drawerlayout.widget.DrawerLayout>
+```
