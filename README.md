@@ -1,8 +1,8 @@
 ## Food Carbon Calculator
 
 - Sharran's branch
-- I have added User Registration, User Login and User Review and Rating.
-- I have also added 11 drawable files which will be used by the above Activities.
+- I have added User Registration, User Login, User Review and Rating and Articles and Resources.
+- I have also added 12 drawable files which will be used by the above Activities.
 - There is also 2 values files here which is colors.xml and strings.xml
 - Lastly, I will add the dependencies that I used for my project here. Feel free to add them to your project as well:
 - dependencies {
@@ -12,6 +12,7 @@
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.firebase:firebase-firestore:24.10.0")
+    implementation("androidx.navigation:navigation-runtime:2.7.6")
     //implementation("com.google.firebase:firebase-database:20.3.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -28,5 +29,10 @@
     //Google
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    //News
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    implementation ("com.github.KwabenBerko:News-API-Java:1.0.2")
+    implementation ("com.squareup.picasso:picasso:2.8")
 
 }
