@@ -1,11 +1,14 @@
 package com.example.foodcarboncalculator;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,27 +19,34 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.net.Uri;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
-
-    private BottomNavigationView bottomNavigationView;
+    FirebaseAuth auth;
+    FirebaseDatabase database;
+    FirebaseStorage storage;
+    Uri selectedImage;
+    ProgressDialog dialog;
+    CircleImageView imageView;
 
     TextView profileEmail, profileUsername, profileAge, profileDiet, profileCarbon, profileGender;
     Button editProfile, logoutButton;
@@ -54,6 +64,11 @@ public class ProfileActivity extends AppCompatActivity {
         profileCarbon = findViewById(R.id.profileCarbon);
         profileDiet = findViewById(R.id.profileDiet);
         editProfile = findViewById(R.id.BTNEditProfile);
+        imageView = findViewById(R.id.imageView2);
+
+        database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         showAllUserData();
 
@@ -64,21 +79,41 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //retrieve profile pic from firebase
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+        // Reference to the updated profile picture URL in Firebase Storage
+        StorageReference profileRef = storageReference.child("users/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // Load the updated profile picture using Picasso or any other image loading library
+                Picasso.get().load(uri).into(imageView); // profileImageView is your ImageView
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle failure to retrieve the updated profile picture URL
+            }
+        });
+
         //bottom navigation view
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.DestHome);
+        bottomNavigationView.setSelectedItemId(R.id.DestProfile); // Set profile as selected
         bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.DestHome) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                item.setTitle("Home");
                 return true;
             } else if (item.getItemId() == R.id.DestCalender) {
                 startActivity(new Intent(getApplicationContext(), MealPlannerActivity.class));
+                item.setTitle("calender");
                 return true;
             } else if (item.getItemId() == R.id.DestCommunity) {
                 // Handle DestCommunity
                 return true;
             } else if (item.getItemId() == R.id.DestProfile) {
                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                item.setTitle("Profile");
                 return true;
             }
             return false;
@@ -86,12 +121,31 @@ public class ProfileActivity extends AppCompatActivity {
 
         //logout
         logoutButton = findViewById(R.id.BTNLogout);
-
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this); // Pass the context here
+
+                builder.setMessage("Are you sure you want to logout?");
+                builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // If the user clicks "No", dismiss the dialog
+                        dialogInterface.dismiss(); // Dismiss the dialog
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }
