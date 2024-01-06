@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:id="@+id/RL1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border">
+        android:background="@drawable/border_white">
 
         <ImageView
             android:id="@+id/imgView_profile"
@@ -62,15 +64,48 @@
         <ImageView
             android:id="@+id/imgView_ForumPic"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/TxtDesc"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="15dp"
             android:padding="5dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/img_food" />
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <ImageView
+            android:id="@+id/imgStar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            app:srcCompat="@drawable/unfilled_heart"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/BtnComments"
+            android:background="@drawable/border_white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgView_ForumPic"
+            android:padding="15dp"
+            android:text="Comments"
+            android:clickable="true"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/feedRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/BtnComments"
+            android:layout_marginBottom="20dp" />
 
     </RelativeLayout>
+
 
 </RelativeLayout>

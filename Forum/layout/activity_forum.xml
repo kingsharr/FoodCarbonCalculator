@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/imgBack"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:contentDescription="Back Button"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,32 +34,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/arrow_left_fill" />
+        app:srcCompat="@drawable/arrow_left_fill"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/imgBeige"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="610dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="-100dp"
         android:background="@drawable/container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUserForum"
+        app:layout_constraintVertical_bias="0.266" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rvForum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:paddingBottom="200dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnStartDisc"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintVertical_bias="0.055"
+        tools:itemCount="10" />
 
     <TextView
         android:id="@+id/btnStartDisc"
@@ -67,9 +74,9 @@
         android:layout_height="50dp"
         android:background="@drawable/border"
         android:text="Start a discussion"
-        android:textColor="@color/green"
+        android:textColor="@color/black"
         android:gravity="center"
-        android:paddingStart="-100dp"
+        android:paddingStart="30dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,11 +92,11 @@
         android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnStartDisc"
         app:layout_constraintEnd_toEndOf="@+id/btnStartDisc"
-        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="@+id/btnStartDisc"
         app:layout_constraintTop_toTopOf="@+id/btnStartDisc"
         app:layout_constraintVertical_bias="0.1"
-        app:srcCompat="@drawable/create" />
+        app:srcCompat="@drawable/create_black" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
