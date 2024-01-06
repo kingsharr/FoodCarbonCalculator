@@ -11,5 +11,5 @@ dependencyResolutionManagement {
     }
 }
 The above method should look like this. You should just add this "maven ( "https://jitpack.io" )" there in that method which can be found in your settings.gradle.kts
-Lastly, create and API Key using the News API website and insert your API key, in the NewsApiClient newsApiClient = new NewsApiClient("YOUR API KEY"); in NewsActivity.java.
+Lastly, create an API Key using the News API website and insert your API key, in the NewsApiClient newsApiClient = new NewsApiClient("YOUR API KEY"); in NewsActivity.java.
 Thank you.
