@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".MealPlannerActivity">
+
+            <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="341dp"
+            android:layout_height="297dp"
+            android:layout_marginTop="112dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/foodeattoday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="The food you eat today?"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/calendarView"
+            app:layout_constraintStart_toStartOf="@+id/calendarView"
+            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+        <RadioGroup
+            android:id="@+id/RGTimeEat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="75dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/foodeattoday">
+
+            <RadioButton
+                android:id="@+id/breakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakfast"/>
+
+            <RadioButton
+                android:id="@+id/lunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Lunch"/>
+
+            <RadioButton
+                android:id="@+id/dinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Dinner"/>
+        </RadioGroup>
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="325dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:contextClickable="false"
+            app:layout_constraintEnd_toEndOf="@+id/calendarView"
+            app:layout_constraintHorizontal_bias="0.391"
+            app:layout_constraintStart_toStartOf="@+id/calendarView"
+            app:layout_constraintTop_toBottomOf="@+id/RGTimeEat" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="325dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:contextClickable="false"
+            app:layout_constraintEnd_toEndOf="@+id/calendarView"
+            app:layout_constraintHorizontal_bias="0.391"
+            app:layout_constraintStart_toStartOf="@+id/calendarView"
+            app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="20dp"
+            android:text="SAVE"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/transparent_background"
+        android:backgroundTint="@color/colorPrimary"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
