@@ -17,36 +17,7 @@
         android:layout_marginTop="60dp"
         android:src="@drawable/background" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/transparent_background"
-        android:backgroundTint="@color/colorPrimary"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom">
 
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:contentDescription="calculator"
-        android:scaleType="center"
-        android:src="@drawable/calculator"
-        app:fabCustomSize="60dp"
-        app:layout_anchor="@+id/bottomNavigationView"
-        app:layout_anchorGravity="center"
-        app:maxImageSize="24dp"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"
-        app:tint="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -81,7 +52,7 @@
             app:layout_constraintTop_toBottomOf="@+id/BTNEditProfile" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/BTNLogout"
             android:layout_width="113dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
@@ -97,7 +68,7 @@
             android:layout_width="311dp"
             android:layout_height="336dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintBottom_toTopOf="@+id/BTNLogout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,14 +152,14 @@
                 android:background="@color/grey" />
 
             <TextView
-                android:id="@+id/profileDiet"
+                android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
                 android:gravity="bottom"
                 android:text="My Diet" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/profileDiet"
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
                 android:text="dietpreference"
@@ -228,11 +199,12 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView2"
-            android:layout_width="108dp"
-            android:layout_height="96dp"
-            android:layout_marginTop="92dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="70dp"
             android:src="@drawable/user"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -241,4 +213,35 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@android:color/transparent"
+        android:background="@drawable/transparent_background"
+        android:backgroundTint="@color/colorPrimary"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:contentDescription="calculator"
+        android:scaleType="center"
+        android:src="@drawable/calculator"
+        app:fabCustomSize="60dp"
+        app:layout_anchor="@+id/bottomNavigationView"
+        app:layout_anchorGravity="center"
+        app:maxImageSize="24dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.FloatingActionButton"
+        app:tint="@color/white" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
