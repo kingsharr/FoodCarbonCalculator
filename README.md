@@ -13,3 +13,6 @@
     Put this inside build.gradle (module:app)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation ("androidx.cardview:cardview:1.0.0")
+
+    put this inside settings.gradle.kts under repositories both pluginmanagement and dependencyresolutionmanagement
+   maven { url = uri("https://jitpack.io") } // Corrected this line
