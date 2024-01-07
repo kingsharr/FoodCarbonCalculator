@@ -27,3 +27,45 @@ dependencies {
 
 
 }
+
+
+private void setInsightText() {
+
+        //get food analysis data from database
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Get a reference to the emission collection
+        CollectionReference foodPlansRef = db.collection("valueCarbon");
+
+        // Query to get all documents in the "user_goals" subcollection
+        foodPlansRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    double emission = 0;
+                    int tree = 0;
+                    int energy = 0;
+                    // Iterate through the documents
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        double val = document.getDouble("carbonValue");
+                        tree += (int) val/100;
+                        Log.w(TAG, "emission after tree: " + emission, task.getException());
+                        energy += (int) val/20;
+                        Log.w(TAG, "emission after carbon: " + emission, task.getException());
+                        emission += val;
+                        Log.w(TAG, "emission: " + emission, task.getException());
+
+                    }
+                    insight1.setText(emission + "kg C02");
+                    insight2.setText("Saving " + tree + " trees, equivalent to their annual CO2 absorption");
+                    insight3.setText("Saving " + energy + "kWh of energy");
+
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.getException());
+                }
+            }
+        });
+
+    }
