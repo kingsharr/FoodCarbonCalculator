@@ -78,6 +78,7 @@ public class ForumActivity extends AppCompatActivity {
         commentList = new ArrayList<>();
         addComm = new Dialog(this);
         postArrayList = new ArrayList<Post>();
+        postArrayList.clear();
         getForum();
         rvForum = findViewById(R.id.rvForum);
         RequestManager glide = Glide.with(this);
@@ -264,8 +265,9 @@ public class ForumActivity extends AppCompatActivity {
                     userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
                             String userName = task.getResult().get("name").toString();
-                            saveForumToFirestore(userName,userId);
+                            saveForumToFirestore(userName);
                         }
                     });
                     setRVForum();
@@ -352,7 +354,7 @@ public class ForumActivity extends AppCompatActivity {
 
 
 
-    private void saveForumToFirestore(String userName, String userId) {
+    private void saveForumToFirestore(String userName) {
         /*String userName;
         // Get the user's UID from Firebase Authentication
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -399,6 +401,7 @@ public class ForumActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         // Successfully added post
+                        String userId = documentReference.getId();
                         Toast.makeText(ForumActivity.this, "Post added successfully.", Toast.LENGTH_SHORT).show();
                         Post post = new Post(userId, title,desc,
                                 imageDownloadLink,
@@ -459,6 +462,7 @@ public class ForumActivity extends AppCompatActivity {
 
     private void addCommentToFirestore(String postId, Comment comment) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
         // Reference to the comments collection under the specific post
         CollectionReference commentsCollection = db.collection("forum")
