@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +33,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfile extends AppCompatActivity {
 
-    EditText editName, editEmail, editAge, editCarbon;
+    EditText editName, editAge, editCarbon;
+    TextView editEmail;
     Spinner spinnerGender, spinnerDiet;
     Button saveButton, logoutButton, cancelButton;
     CircleImageView ProfileImage;
@@ -85,7 +87,7 @@ public class EditProfile extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isNameChanged() || isEmailChanged() || isAgeChanged() || isCarbonChanged() || isDietChanged() || isGenderChanged()){
+                if (isNameChanged() ||  isAgeChanged() || isCarbonChanged() || isDietChanged() || isGenderChanged()){
                     Toast.makeText(EditProfile.this, "Saved", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(EditProfile.this, ProfileActivity.class);
                         startActivity(intent);
@@ -173,7 +175,7 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 
-    private boolean isEmailChanged() {
+    /*private boolean isEmailChanged() {
         if (!emailUser.equals(editEmail.getText().toString())) {
             // Update the 'gender' field in the Firestore document
             reference.update("email", editEmail.getText().toString())
@@ -189,7 +191,7 @@ public class EditProfile extends AppCompatActivity {
         } else {
             return false;
         }
-    }
+    }*/
 
     private boolean isGenderChanged() {
         if (!genderUser.equals(spinnerGender.getSelectedItem().toString())) {
