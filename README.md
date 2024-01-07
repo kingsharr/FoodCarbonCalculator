@@ -9,3 +9,9 @@
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.firebase:firebase-firestore:24.10.0")
+
+Dependencies for dashboard analytic charts:
+Put this inside build.gradle (module:app)
+
+implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+implementation ("androidx.cardview:cardview:1.0.0")
