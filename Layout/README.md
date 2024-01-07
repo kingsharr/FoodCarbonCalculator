@@ -13,25 +13,33 @@ protected void onCreate(Bundle savedInstanceState) {
 
     //Bottom Navigation View
     BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-    bottomNavigationView.setSelectedItemId(R.id.DestHome);//if at calendar activity, change to DestCalendar, at Profile, change to DestProfile etc..
-    bottomNavigationView.setOnItemSelectedListener(item -> {
-        if (item.getItemId() == R.id.DestHome) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-            return true;
-        } else if (item.getItemId() == R.id.DestCalender) {
-            startActivity(new Intent(getApplicationContext(), MealPlannerActivity.class));
-            finish();
-            return true;
-        } else if (item.getItemId() == R.id.DestCommunity) {
-            // add intent
-            return true;
-        } else if (item.getItemId() == R.id.DestProfile) {
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-            finish();
-            return true;
-        }
-        return false;
+    public class [ActivityName] extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+   bottomNavigationView.setSelectedItemId(R.id.bottom_home);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.bottom_home) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                item.setTitle("Home");
+                return true;
+            } else if (item.getItemId() == R.id.bottom_calendar) {
+                startActivity(new Intent(getApplicationContext(), MealPlannerActivity.class));
+                item.setTitle("calender");
+                return true;
+            } else if (item.getItemId() == R.id.bottom_comment) {
+                // Handle DestCommunity
+                return true;
+            } else if (item.getItemId() == R.id.bottom_profile) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                item.setTitle("Profile");
+                return true;
+            }
+            return false;
+}
     });
 
 }
