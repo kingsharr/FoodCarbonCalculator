@@ -1,73 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bgColor"
-    tools:context=".Insights">
-
-    <TextView
-        android:id="@+id/txt2"
-        android:layout_width="170dp"
-        android:layout_height="64dp"
-        android:text="Environmental Impact Insights"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071" />
-
-    <ImageView
-        android:id="@+id/imgBack"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:clickable="true"
-        android:contentDescription="Back Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/arrow_left_fill" />
-
-    <ImageView
-        android:id="@+id/imgBeige"
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_marginBottom="-100dp"
-        android:background="@drawable/container"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575" />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="5dp">
 
     <HorizontalScrollView
         android:layout_width="300dp"
         android:layout_height="130dp"
         android:background="@drawable/border"
         android:contentDescription="insights"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgBeige"
-        app:layout_constraintVertical_bias="0.442"
         android:fadeScrollbars="false"
-        android:scrollbarAlwaysDrawHorizontalTrack="true">
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbarSize="10dp">
 
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="match_parent"
             android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txtInsight0"
+                android:layout_width="200dp"
+                android:layout_height="70dp"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Average C02 emission this week:" />
+
+            <TextView
+                android:id="@+id/txtInsight1"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:textSize="22dp"
+                android:textColor="@color/black"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:text="0kg C02" />
+
+        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgEarth"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                app:srcCompat="@drawable/earth"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <ImageView
                 android:id="@+id/imgTree"
@@ -79,14 +70,14 @@
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             <TextView
-                android:id="@+id/txtInsight1"
+                android:id="@+id/txtInsight2"
                 android:layout_width="210dp"
                 android:layout_height="match_parent"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:textColor="@color/black"
                 android:padding="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="Saving 10 trees, equivalent to their annual CO2 absorption" />
+                android:text="Saving 0 trees, equivalent to their annual CO2 absorption" />
 
             <ImageView
                 android:id="@+id/imgEnergy"
@@ -96,8 +87,9 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
             <TextView
-                android:id="@+id/txtInsight2"
+                android:id="@+id/txtInsight3"
                 android:layout_width="210dp"
                 android:layout_height="match_parent"
                 android:textAlignment="textStart"
@@ -105,11 +97,10 @@
                 android:textSize="22dp"
                 android:textColor="@color/black"
                 android:padding="10dp"
-                android:text="Saving 10kWh of energy"
+                android:text="Saving 0kWh of energy"
                 tools:ignore="RtlCompat" />
 
         </LinearLayout>
     </HorizontalScrollView>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
