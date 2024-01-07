@@ -24,7 +24,6 @@
                 android:id="@+id/mcheckbox"
                 android:layout_width="349dp"
                 android:layout_height="48dp"
-                android:buttonTint="@color/colorPrimary"
                 android:paddingStart="10dp"
                 android:text="This is task 1"
                 app:layout_constraintEnd_toEndOf="parent"
