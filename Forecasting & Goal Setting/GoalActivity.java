@@ -36,6 +36,7 @@ import java.util.Map;
 public class GoalActivity extends AppCompatActivity{
 
     TextView addGoal;
+    TextView forecast;
     Dialog popAdd;
     RecyclerView recyclerView;
     EditText editGoal;
@@ -51,6 +52,8 @@ public class GoalActivity extends AppCompatActivity{
         arrayList.clear();
         popAdd = new Dialog(this);
         popUp();
+        forecast = findViewById(R.id.txtForecast);
+        setForecast();
         recyclerView = findViewById(R.id.goalRecyclerView);
         adapter = new QuantityAdapter(this,arrayList);
         fetchGoals();
@@ -61,6 +64,40 @@ public class GoalActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 popAdd.show();
+            }
+        });
+    }
+
+    //set forecast based on what food the user chose
+    private void setForecast() {
+
+        //get food analysis data from database
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Get a reference to the emission collection
+        CollectionReference foodPlansRef = db.collection("valueCarbon");
+
+        // Query to get all documents in the "user_goals" subcollection
+        foodPlansRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    double percentage = 0;
+                    // Iterate through the documents
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        double val = document.getDouble("carbonValue");
+                        percentage += val/100;
+                    }
+                    if(percentage == 0){
+                        forecast.setText("Start choosing a food to \nsee forecast.");
+                    }else{
+                        forecast.setText("Keep going and you will \nreduce " + percentage +"% more carbon!");
+                    }
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.getException());
+                }
             }
         });
     }
@@ -207,5 +244,4 @@ public class GoalActivity extends AppCompatActivity{
             }
         });
     }
-
 }
