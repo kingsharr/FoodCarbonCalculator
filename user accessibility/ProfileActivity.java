@@ -98,20 +98,20 @@ public class ProfileActivity extends AppCompatActivity {
 
         //bottom navigation view
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.DestProfile); // Set profile as selected
+        bottomNavigationView.setSelectedItemId(R.id.bottom_profile); // Set profile as selected
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.DestHome) {
+            if (item.getItemId() == R.id.bottom_home) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 item.setTitle("Home");
                 return true;
-            } else if (item.getItemId() == R.id.DestCalender) {
+            } else if (item.getItemId() == R.id.bottom_calendar) {
                 startActivity(new Intent(getApplicationContext(), MealPlannerActivity.class));
                 item.setTitle("calender");
                 return true;
-            } else if (item.getItemId() == R.id.DestCommunity) {
+            } else if (item.getItemId() == R.id.bottom_comment) {
                 // Handle DestCommunity
                 return true;
-            } else if (item.getItemId() == R.id.DestProfile) {
+            } else if (item.getItemId() == R.id.bottom_profile) {
                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                 item.setTitle("Profile");
                 return true;
