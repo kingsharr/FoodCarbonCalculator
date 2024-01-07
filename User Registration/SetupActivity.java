@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ public class SetupActivity extends AppCompatActivity {
     private Spinner spinnerGoals;
     private Button submitButton;
 
+    protected String Email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,10 @@ public class SetupActivity extends AppCompatActivity {
         spinnerGoals = findViewById(R.id.spinner_goals);
         submitButton = findViewById(R.id.submit_button);
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            Email = intent.getStringExtra("email");
+        }
         // Set up the spinner
         setUpSpinner();
 
@@ -52,6 +59,7 @@ public class SetupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Call a method to save user information to Firestore
                 saveUserInfoToFirestore();
+
             }
         });
     }
@@ -90,12 +98,29 @@ public class SetupActivity extends AppCompatActivity {
         // Get selected dietary preference
         String dietaryPreference = spinnerGoals.getSelectedItem().toString();
 
+        //Get carbon emission goal
+        double carbon = 0.0;
+
+        // Calculate carbon based on dietary preference
+        if (dietaryPreference.equals("Omnivore")) {
+            carbon = 3.50;
+        } else if (dietaryPreference.equals("Vegetarian")) {
+            carbon = 2.50;
+        } else if (dietaryPreference.equals("Vegan")) {
+            carbon = 1.50;
+        }
+        else{
+            carbon = 2.70;
+        }
+
         // Create a Map to represent the user data
         Map<String, Object> userData = new HashMap<>();
         userData.put("name", name);
+        userData.put("email", Email);
         userData.put("age", age);
         userData.put("gender", gender);
         userData.put("dietaryPreference", dietaryPreference);
+        userData.put("carbon", carbon);
 
         // Get a reference to the Firestore collection "users"
         FirebaseFirestore db = FirebaseFirestore.getInstance();
