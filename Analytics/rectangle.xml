@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- You can set the width and height inside the layout where you use this drawable -->
+
+    <!-- Specify the color of the rectangle -->
+    <solid android:color="#FFFFFF" />
+
+    <!-- Optional: Add corners if you want rounded corners -->
+    <corners android:radius="8dp" /> <!-- 8dp rounded corners -->
+
+    <!-- Optional: Add padding inside the rectangle -->
+    <padding
+        android:left="4dp"
+        android:top="4dp"
+        android:right="4dp"
+        android:bottom="4dp" />
+
+    <!-- Optional: Add stroke for border -->
+    <stroke
+        android:width="2dp"
+        android:color="#000000" /> <!-- Black color border -->
+</shape>
