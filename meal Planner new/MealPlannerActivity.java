@@ -1,5 +1,7 @@
 package com.example.foodcarboncalculator;
 
+import static com.example.foodcarboncalculator.new_task.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -125,30 +127,40 @@ public class MealPlannerActivity extends AppCompatActivity implements AdapterVie
                 .collection("UserMeals") // Subcollection for each user
                 .document(stringDateSelected); // Document ID is the selected date
 
-// Add data to the meal plan document without overwriting existing content
-        Map<String, Object> mealPlanData = new HashMap<>();
-        if (timeEat.equals("Breakfast")) {
-            mealPlanData.put("breakfast", food);
-        } else if (timeEat.equals("Lunch")) {
-            mealPlanData.put("lunch", food);
-        } else {
-            mealPlanData.put("dinner", food);
-        }
+// Fetch the existing document to avoid overwriting other meal fields
+        mealPlanRef.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                // ... (Your existing code to update the document)
+            } else {
+                // Document does not exist, create a new one with the specified data
+                Map<String, Object> newMealPlanData = new HashMap<>();
+                if (timeEat.equals("Breakfast")) {
+                    newMealPlanData.put("breakfast", food);
+                } else if (timeEat.equals("Lunch")) {
+                    newMealPlanData.put("lunch", food);
+                } else {
+                    newMealPlanData.put("dinner", food);
+                }
 
-// Update the document in Firestore with the new meal data
-        mealPlanRef.update(mealPlanData)
-                .addOnSuccessListener(aVoid -> {
-                    // Data has been successfully added
-                    Toast.makeText(this, "Meal plan saved successfully", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    // Handle any errors
-                    Log.e("Firestore", "Error updating document", e);
-                });
+                // Create a new document with the specified data
+                mealPlanRef.set(newMealPlanData)
+                        .addOnSuccessListener(aVoid -> {
+                            // Document created successfully
+                            Toast.makeText(this, "New meal plan created and saved successfully", Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(e -> {
+                            // Handle any errors
+                            Log.e("Firestore", "Error creating document", e);
+                        });
+            }
+        }).addOnFailureListener(e -> {
+            // Handle any errors when fetching the document
+            Log.e("Firestore", "Error fetching document", e);
+        });
 
     }
 
-    // Method to create meal data as a map
+        // Method to create meal data as a map
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
