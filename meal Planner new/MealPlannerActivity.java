@@ -130,8 +130,29 @@ public class MealPlannerActivity extends AppCompatActivity implements AdapterVie
 // Fetch the existing document to avoid overwriting other meal fields
         mealPlanRef.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
-                // ... (Your existing code to update the document)
-            } else {
+                //Document exists, fetch its data
+                Map<String, Object> mealPlanData = documentSnapshot.getData();
+
+                // Update the specific meal field based on the time of eating
+                if (timeEat.equals("Breakfast")) {
+                    mealPlanData.put("breakfast", food);
+                } else if (timeEat.equals("Lunch")) {
+                    mealPlanData.put("lunch", food);
+                } else {
+                    mealPlanData.put("dinner", food);
+                }
+                // Set the updated meal plan data back to Firestore
+                mealPlanRef.set(mealPlanData)
+                        .addOnSuccessListener(aVoid -> {
+                            // Data has been successfully updated
+                            Toast.makeText(this, "Meal plan saved successfully", Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(e -> {
+                            // Handle any errors
+                            Log.e("Firestore", "Error updating document", e);
+                        });
+            }
+            else {
                 // Document does not exist, create a new one with the specified data
                 Map<String, Object> newMealPlanData = new HashMap<>();
                 if (timeEat.equals("Breakfast")) {
