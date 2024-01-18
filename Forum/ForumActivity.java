@@ -355,21 +355,6 @@ public class ForumActivity extends AppCompatActivity {
 
 
     private void saveForumToFirestore(String userName) {
-        /*String userName;
-        // Get the user's UID from Firebase Authentication
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        // Get a reference to the Firestore collection "users"
-        FirebaseFirestore userDb = FirebaseFirestore.getInstance();
-        DocumentReference userRef = userDb.collection("users").document(userId);
-
-        userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                String userName = task.getResult().get("name").toString();
-            }
-        });*/
-
         // Get post image link
         String imageDownloadLink;
         if(pickedImgUri != null){
